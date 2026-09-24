@@ -12,7 +12,6 @@ export default function App() {
   const [open, setOpen] = useState(false);
   const [proj, setProj] = useState<Project | null>(null);
   const [cat, setCat] = useState<string | null>(null);
-  const [certificateOpen, setCertificateOpen] = useState(false);
 
   useEffect(() => {
     const s = () => setScrolled(scrollY > 24); s(); addEventListener('scroll', s, { passive: true });
@@ -20,17 +19,6 @@ export default function App() {
     document.querySelectorAll('.rv').forEach((el) => io.observe(el));
     return () => { removeEventListener('scroll', s); io.disconnect(); };
   }, []);
-
-  useEffect(() => {
-    if (!certificateOpen) return;
-    const key = (e: KeyboardEvent) => e.key === 'Escape' && setCertificateOpen(false);
-    document.body.style.overflow = 'hidden';
-    addEventListener('keydown', key);
-    return () => {
-      document.body.style.overflow = '';
-      removeEventListener('keydown', key);
-    };
-  }, [certificateOpen]);
 
   return (
     <>
@@ -87,7 +75,7 @@ export default function App() {
             <ul>{ex.points.map((x) => <li key={x}>{x}</li>)}</ul>
             <ul className="chips mono">{ex.tags.map((t) => <li key={t}>{t}</li>)}</ul>
             <div className="row">
-              <button className="btn white-btn" onClick={() => setCertificateOpen(true)}>View Certificate</button>
+              <a className="btn white-btn" href="/Intern-Certificate%20.pdf" target="_blank" rel="noopener noreferrer">View Certificate</a>
             </div>
           </div>
         </section>
@@ -155,16 +143,6 @@ export default function App() {
         <p className="muted">Built with curiosity, code & intelligent systems.</p>
       </footer>
       {proj && <ProjectModal p={proj} onClose={() => setProj(null)} />}
-      {certificateOpen && (
-        <div className="modal" role="dialog" aria-modal="true" aria-label="Internship certificate" onClick={() => setCertificateOpen(false)}>
-          <div className="modal-in certificate-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="x" onClick={() => setCertificateOpen(false)} aria-label="Close certificate"><X size={20} /></button>
-            <p className="mono muted">C3iHub, IIT Kanpur</p>
-            <h2>Intern Certificate</h2>
-            <iframe className="certificate-frame" src="/Intern-Certificate%20.pdf" title="C3iHub Internship Certificate" />
-          </div>
-        </div>
-      )}
     </>
   );
 }

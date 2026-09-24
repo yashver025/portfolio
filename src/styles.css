@@ -73,8 +73,6 @@ ul{list-style:none;padding:0}
 .modal-in{background:#0d0f14;width:min(820px,100%);max-height:92svh;overflow-y:auto;padding:32px;position:relative;animation:rise .35s}
 .modal-in h2{margin-bottom:8px}.m-sec{margin-top:26px}.m-sec h3{color:var(--h);font-size:.95rem;margin-bottom:8px}
 .x{position:absolute;right:14px;top:14px;background:none;border:0;color:var(--tx);cursor:pointer;padding:8px}
-.certificate-modal{width:min(960px,100%)}
-.certificate-frame{width:100%;min-height:76vh;border:1px solid var(--line);border-radius:12px;background:#fff;margin-top:18px}
 @keyframes fade{from{opacity:0}}
 @media(max-width:900px){.proj{grid-template-columns:1fr}.pipe li{flex-basis:100%}.pipe li:not(:last-child)::after{display:none}}
 @media(max-width:860px){
